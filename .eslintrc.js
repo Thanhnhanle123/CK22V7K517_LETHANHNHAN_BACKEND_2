@@ -1,8 +1,8 @@
 module.exports = {
   env: {
-    node: true,
-    commonjs: true,
+    browser: true,
     es2021: true,
+    node: true,
   },
-  extends: ["eslint:recommended", "prettier"],
+  extends: ["eslint:recommended", "plugin:vue/vue3-essential"],
 };
