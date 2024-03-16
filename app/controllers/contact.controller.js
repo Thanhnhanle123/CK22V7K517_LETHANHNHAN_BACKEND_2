@@ -16,7 +16,7 @@ exports.create = async (req, res, next) => {
   }
 };
 
-exports.findAll = async (req, res) => {
+exports.findAll = async (req, res, next) => {
   let documents = [];
   try {
     const contactService = new ContactService(MongoDB.client);
@@ -34,7 +34,7 @@ exports.findAll = async (req, res) => {
   return res.send(documents);
 };
 
-exports.findOne = async (req, res) => {
+exports.findOne = async (req, res, next) => {
   try {
     const contactService = new ContactService(MongoDB.client);
     const document = await contactService.findById(req.params.id);
@@ -49,7 +49,7 @@ exports.findOne = async (req, res) => {
   }
 };
 
-exports.update = async (req, res) => {
+exports.update = async (req, res, next) => {
   if (Object.keys(req.body).length === 0) {
     return next(new ApiError(400, "Data to update can not be empty"));
   }
@@ -68,7 +68,7 @@ exports.update = async (req, res) => {
   }
 };
 
-exports.delete = async (req, res) => {
+exports.delete = async (req, res, next) => {
   try {
     const contactService = new ContactService(MongoDB.client);
     const document = await contactService.delete(req.params.id);
@@ -83,7 +83,7 @@ exports.delete = async (req, res) => {
   }
 };
 
-exports.deleteAll = async (req, res) => {
+exports.deleteAll = async (req, res, next) => {
   try {
     const contactService = new ContactService(MongoDB.client);
     const deleteCount = await contactService.deleteAll();
@@ -97,7 +97,7 @@ exports.deleteAll = async (req, res) => {
   }
 };
 
-exports.findAllFavorite = async (req, res) => {
+exports.findAllFavorite = async (req, res, next) => {
   try {
     const contactService = new ContactService(MongoDB.client);
     const documents = await contactService.findFavorite();
